@@ -1,17 +1,20 @@
 using BackComandaBar.Database;
+using BackComandaBar.Models;
+using BackComandaBar.Services.CardService;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<ComandaBarDatabaseSettings>(
     builder.Configuration.GetSection("ComandaBarDatabase"));
 
+builder.Services.AddSingleton<CardService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
